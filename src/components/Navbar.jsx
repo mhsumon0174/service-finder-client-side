@@ -1,6 +1,14 @@
 import React from 'react';
+import { Link, NavLink } from 'react-router';
 
 const Navbar = () => {
+  const links=<>
+  <li><NavLink to='/'>Home</NavLink> </li>
+        <li><NavLink to='/services'>Services</NavLink> </li>
+        <li><NavLink to='/addservices'>Add Service</NavLink> </li>
+        <li><NavLink to='/myservices'>My Services</NavLink> </li>
+        <li><NavLink to='/myreviews'>My Reviews</NavLink> </li>
+  </>
     return (
         <div className="navbar bg-base-100 shadow-sm">
   <div className="navbar-start">
@@ -11,22 +19,21 @@ const Navbar = () => {
       <ul
         tabIndex={0}
         className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
-        <li><a>Item 1</a></li>
-        
-        <li><a>Item 2</a></li>
+        {links}
       </ul>
     </div>
-    <img className='md:w-[60px] w-[30px]' src="https://i.ibb.co/XfHPrns0/servfinder-1-modified.png" alt="" />
+    <img className='md:w-[40px] w-[25px]' src="https://i.ibb.co/XfHPrns0/servfinder-1-modified.png" alt="" />
   </div>
   <div className="navbar-center hidden lg:flex">
     <ul className="menu menu-horizontal px-1">
-      <li><a>Item 1</a></li>
-      
-      <li><a>Item 2</a></li>
+      {links}
     </ul>
   </div>
   <div className="navbar-end">
-    <a className="btn">Button</a>
+    <div className='space-x-4'>
+      <Link to='/login'><button className='btn btn-outline btn-secondary'>Login</button></Link>
+      <Link to='/signup'><button className='btn btn-outline btn-secondary'>Sign Up</button></Link>
+    </div>
   </div>
 </div>
     );
