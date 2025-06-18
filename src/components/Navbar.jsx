@@ -2,7 +2,7 @@ import React, { use } from 'react';
 import { Link, NavLink } from 'react-router';
 import { AuthContext } from '../provider/AUthContext';
 import Swal from 'sweetalert2';
-
+import { Tooltip } from "react-tooltip";
 const Navbar = () => {
   
   const {user,logOut}=use(AuthContext)
@@ -47,10 +47,17 @@ logOut()
       {links}
     </ul>
   </div>
+  <Tooltip id="my-tooltip" />
   <div className="navbar-end">
     {user?
   
-    <Link to='/login'><button onClick={handleSignOut} className='btn btn-outline btn-secondary'>Logout</button></Link> :
+    <div className='flex gap-4 items-center'>
+      <img
+      data-tooltip-id="my-tooltip"
+  data-tooltip-content={user.displayName}
+       className="rounded-full w-8 sm:w-10" src={user.photoURL} alt="" />
+      <Link to='/login'><button onClick={handleSignOut} className='btn btn-outline btn-secondary'>Logout</button></Link>
+    </div> :
   <div className='space-x-4'>
       <Link to='/login'><button className='btn btn-outline btn-secondary'>Login</button></Link>
       <Link to='/signup'><button className='btn btn-outline btn-secondary'>Sign Up</button></Link>

@@ -7,7 +7,7 @@ import { AuthContext } from '../provider/AUthContext';
 
 const Register = () => {
   const navigate=useNavigate()
-  const {user,createUser,googleSignUp}=use(AuthContext)
+  const {user,setUser,createUser,googleSignUp,updateUser}=use(AuthContext)
     const [showPassword,setShowPassword]=useState(false)
      const handleShowPassword=()=>{
 setShowPassword(!showPassword)
@@ -49,6 +49,18 @@ if(!upperCase){
 else{
   createUser(email,password)
 .then((data)=>{
+  const user=data.user;
+  if(user){
+    updateUser({
+      displayName:name,
+      photoURL:photo
+    })
+    .then(data=>{
+setUser({...user,displayName:name,
+      photoURL:photo})
+    })
+  }
+  updateUser()
   
    navigate('/')
 return Swal.fire({
