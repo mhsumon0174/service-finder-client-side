@@ -1,10 +1,13 @@
-import React, { useState } from 'react';
+import React, { use, useState } from 'react';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { FcGoogle } from 'react-icons/fc';
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 import Swal from 'sweetalert2';
+import { AuthContext } from '../provider/AUthContext';
 
 const Register = () => {
+  const navigate=useNavigate()
+  const {user,createUser,googleSignUp}=use(AuthContext)
     const [showPassword,setShowPassword]=useState(false)
      const handleShowPassword=()=>{
 setShowPassword(!showPassword)
@@ -42,6 +45,49 @@ if(!upperCase){
         text: "Password must have at least six characters.",
       });
     }
+    
+else{
+  createUser(email,password)
+.then((data)=>{
+  
+   navigate('/')
+return Swal.fire({
+        icon: "success",
+        title: "Congratulations",
+        text: "You have successfully registered and logged in",
+      });
+
+}).catch((error)=>{
+  return Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: error.message,
+      });
+  
+})
+}
+    
+    }
+    const handleGoogleSignUp=(e)=>{
+      e.preventDefault()
+      googleSignUp()
+      .then((data)=>{
+   navigate('/')
+  
+return Swal.fire({
+        icon: "success",
+        title: "Congratulations",
+        text: "You have successfully registered and logged in",
+      });
+
+}).catch((error)=>{
+  return Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: error.message,
+      });
+  
+})
     }
     return (
         <div>
@@ -89,7 +135,7 @@ if(!upperCase){
               </div>
 
               <button className="btn btn-outline btn-primary  my-4">SignUp</button>
-              <button
+              <button onClick={handleGoogleSignUp}
                 className="btn btn-outline btn-accent"
                 
               >
