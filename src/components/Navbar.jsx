@@ -23,9 +23,14 @@ logOut()
   const links=<>
   <li><NavLink to='/'>Home</NavLink> </li>
         <li><NavLink to='/services'>Services</NavLink> </li>
-        <li><NavLink to='/addservices'>Add Service</NavLink> </li>
+       {
+        user?
+         <div className='lg:flex'>
+          <li><NavLink to='/addservices'>Add Service</NavLink> </li>
         <li><NavLink to='/myservices'>My Services</NavLink> </li>
         <li><NavLink to='/myreviews'>My Reviews</NavLink> </li>
+        </div>:''
+       }
   </>
     return (
         <div className="navbar bg-base-100 shadow-sm">

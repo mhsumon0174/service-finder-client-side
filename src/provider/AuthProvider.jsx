@@ -5,21 +5,16 @@ import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged,
 
 
 const AuthProvider = ({children}) => {
+    const [loading,setLoading]=useState(true)
     const provider=new GoogleAuthProvider
     const [user,setUser]=useState()
-    useEffect(()=>{
-        const unsubscribe=onAuthStateChanged(auth,currentUser=>{
-            setUser(currentUser)
-            
-        })
-        return ()=>{
-            unsubscribe();
-        }
-    },[])
+    
     const signIn=(email,password)=>{
+        setLoading(true)
         return signInWithEmailAndPassword(auth,email,password)
     }
     const createUser=(email,password)=>{
+         setLoading(true)
         return createUserWithEmailAndPassword(auth,email,password )
     }
     const googleSignUp=(email,password)=>{
@@ -31,8 +26,17 @@ const AuthProvider = ({children}) => {
 const updateUser=(updatedData)=>{
     return updateProfile(auth.currentUser,updatedData)
 }
+useEffect(()=>{
+        const unsubscribe=onAuthStateChanged(auth,currentUser=>{
+            setUser(currentUser)
+            setLoading(true)
+        })
+        return ()=>{
+            unsubscribe();
+        }
+    },[])
     const userinfo={
-user,setUser,createUser,googleSignUp,logOut,signIn,updateUser
+user,setUser,createUser,googleSignUp,logOut,signIn,updateUser,loading,setLoading
     }
     return (
        <AuthContext value={userinfo}>

@@ -2,6 +2,7 @@ import React, { use } from 'react';
 import { AuthContext } from '../provider/AUthContext';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
+import Partners from './Partners';
 
 const Home = () => {
     const {user}=use(AuthContext)
@@ -15,6 +16,9 @@ const Home = () => {
             <img src="https://i.ibb.co/gFWGKjcf/2150041862.jpg" alt="" />
             <img src="https://i.ibb.co/84D65Fy0/2148143135.jpg" alt="" />
             </Carousel>
+            </div>
+            <div>
+                <Partners></Partners>
             </div>
         </div>
     );
