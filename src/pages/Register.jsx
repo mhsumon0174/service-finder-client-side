@@ -4,7 +4,8 @@ import { FcGoogle } from 'react-icons/fc';
 import { Link, useNavigate } from 'react-router';
 import Swal from 'sweetalert2';
 import { AuthContext } from '../provider/AUthContext';
-
+import Lottie from 'lottie-react';
+import registerLottie from '../assets/lotties/register.json'
 const Register = () => {
   const navigate=useNavigate()
   const {user,setUser,createUser,googleSignUp,updateUser}=use(AuthContext)
@@ -102,8 +103,11 @@ return Swal.fire({
 })
     }
     return (
-        <div>
-            <div className="my-10 flex justify-center  items-center">
+        <div >
+          
+            <div className="my-10 flex-col-reverse md:flex-row
+             flex justify-center gap-5  items-center">
+        
         <div className="card border  w-full max-w-sm shrink-0 shadow-2xl">
           <div className="card-body">
             <form onSubmit={handleSignUp}  className="fieldset">
@@ -162,7 +166,9 @@ return Swal.fire({
             </p>
           </div>
         </div>
+        <Lottie style={{width:'300px'}}  animationData={registerLottie} loop={true}></Lottie>
       </div>
+      
         </div>
     );
 };
