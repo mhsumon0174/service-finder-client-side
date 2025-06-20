@@ -1,12 +1,17 @@
-import React from 'react';
+import React, { use } from 'react';
 import { Helmet } from 'react-helmet';
 import { useLoaderData } from 'react-router';
 import ServiceCard from '../components/ServiceCard';
+import { AuthContext } from '../provider/AUthContext';
+import Loading from '../components/Loading';
 
 const Services = () => {
     const data=useLoaderData()
     console.log(data);
-    
+    const {loading}=use(AuthContext)
+    if(loading){
+        return <Loading></Loading>
+    }
     return (
         <div className='my-20'>
             <Helmet>

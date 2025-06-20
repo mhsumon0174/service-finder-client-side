@@ -29,7 +29,7 @@ const updateUser=(updatedData)=>{
 useEffect(()=>{
         const unsubscribe=onAuthStateChanged(auth,currentUser=>{
             setUser(currentUser)
-            setLoading(true)
+            setLoading(false)
         })
         return ()=>{
             unsubscribe();

@@ -1,14 +1,19 @@
 import React, { use } from 'react';
+import { motion } from "motion/react"
 import { AuthContext } from '../provider/AUthContext';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
 import Partners from './Partners';
 import { Helmet } from 'react-helmet';
+import Loading from './Loading';
+import TopServices from './TopServices';
 
 const Home = () => {
-    const {user}=use(AuthContext)
+    const {user,loading}=use(AuthContext)
     
-    
+    if(loading){
+    return <Loading></Loading>
+}
     return (
         <div>
             <Helmet>
@@ -26,8 +31,10 @@ const Home = () => {
             </div>
 
             <div>
-
+         <TopServices></TopServices>
             </div>
+          
+
         </div>
     );
 };
