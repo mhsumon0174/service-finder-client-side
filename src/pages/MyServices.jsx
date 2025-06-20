@@ -26,15 +26,15 @@ const MyServices = () => {
       .then((data) => {
         console.log(data);
         
-        // if (data.modifiedCount) {
-        //   Swal.fire({
-        //     title: "Data Updated Successfully!",
-        //     icon: "success",
-        //     draggable: true,
-        //     timer: 1400,
-        //   });
+        if (data.modifiedCount) {
+          Swal.fire({
+            title: "Data Updated Successfully!",
+            icon: "success",
+            draggable: true,
+            timer: 1400,
+          });
 
-        // }
+        }
       });
       setEditData(null)
     }
@@ -50,7 +50,7 @@ document.getElementById("my_modal").close();
       .catch((error) => {
         console.log(error);
       });
-  }, [user?.email]);
+  }, [user?.email,editData]);
 // const handleDummy=()=>{
 // Swal.fire({
 //             title: "Data Updated Successfully!",
