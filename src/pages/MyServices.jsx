@@ -1,32 +1,47 @@
 import axios from "axios";
-import React, { use, useEffect, useState } from "react";
+import React, {  useContext, useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
 import { AuthContext } from "../provider/AUthContext";
 import MyServicesCard from "../components/MyServicesCard";
 import Swal from "sweetalert2";
 
 const MyServices = () => {
-   const { user } = use(AuthContext);
+   const { user } = useContext(AuthContext);
   const [data, setData] = useState([]);
-  const [editData,setEditData]=useState([])
+  const [editData,setEditData]=useState({})
   const handleForm = (e) => {
     e.preventDefault();
     document.getElementById("my_modal").close();
     const formData = new FormData(e.target);
     const updatedData = Object.fromEntries(formData.entries());
-  axios.put(`http://localhost:3000/services/${editData._id}`,updatedData)
-  .then(res=>{
-   
-    console.log(res.data);
-    
-    
-
-  }).catch(err => console.log(err));
-  
-  };
  
+    fetch(`http://localhost:3000/services/${editData._id}`, {
+      method: "PUT",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(updatedData),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        
+        // if (data.modifiedCount) {
+        //   Swal.fire({
+        //     title: "Data Updated Successfully!",
+        //     icon: "success",
+        //     draggable: true,
+        //     timer: 1400,
+        //   });
 
-
+        // }
+      });
+      setEditData(null)
+    }
+const handleModalClose=()=>{
+document.getElementById("my_modal").close();
+ setEditData(null)
+}
   useEffect(() => {
     axios(`http://localhost:3000/services?email=${user?.email}`)
       .then((res) => {
@@ -36,20 +51,20 @@ const MyServices = () => {
         console.log(error);
       });
   }, [user?.email]);
-const handleDummy=()=>{
-Swal.fire({
-            title: "Data Updated Successfully!",
-            icon: "success",
-            draggable: true,
-            timer: 1400,
-          });
-}
+// const handleDummy=()=>{
+// Swal.fire({
+//             title: "Data Updated Successfully!",
+//             icon: "success",
+//             draggable: true,
+//             timer: 1400,
+//           });
+// }
   return (
     <div className="max-w-6xl mx-auto px-4 my-10">
       <Helmet>
         <title>My Services || ServFinder</title>
       </Helmet>
-<button onClick={handleDummy} className="btn">Dummy</button>
+{/* <button onClick={handleDummy} className="btn">Dummy</button> */}
       <h2 className="text-2xl md:text-4xl font-bold mb-10 text-center text-gray-800">
         My Added Services
       </h2>
@@ -187,9 +202,9 @@ Swal.fire({
               Update
             </button>
           </form>
-          <form method="dialog" className=" mt-3">
-            <button className="btn btn-error w-full">Close</button>
-          </form>
+          <div  className=" mt-3">
+            <button onClick={handleModalClose} className="btn btn-error w-full">Close</button>
+          </div>
         </div>
         )}
       </dialog>

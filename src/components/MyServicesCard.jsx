@@ -5,16 +5,16 @@ import { MdDeleteForever } from "react-icons/md";
 import axios from "axios";
 const MyServicesCard = ({ service, index,setEditData }) => {
   
-  const handleEdit=(id)=>{
-    document.getElementById('my_modal').showModal()
+  const handleEdit=(_id)=>{
+    
    
-   axios(`http://localhost:3000/services/${id}`)
+   axios(`http://localhost:3000/services/${_id}`)
    .then(res=>{
    
     setEditData(res.data)
    }).catch(error=>{console.log(error);
    })
-
+document.getElementById('my_modal').showModal()
   }
   
   
