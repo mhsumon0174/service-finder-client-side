@@ -4,6 +4,7 @@ import { FcGoogle } from 'react-icons/fc';
 import { Link, useNavigate } from 'react-router';
 import { AuthContext } from '../provider/AUthContext';
 import Swal from 'sweetalert2';
+import { Helmet } from 'react-helmet';
 
 const Login = () => {
     const navigate=useNavigate()
@@ -52,7 +53,7 @@ setShowPassword(!showPassword)
     return Swal.fire({
             icon: "success",
             title: "Congratulations",
-            text: "You have successfully registered and logged in",
+            text: "You have successfully  logged in",
           });
     
     }).catch((error)=>{
@@ -66,7 +67,9 @@ setShowPassword(!showPassword)
         }
     return (
         <div className='my-20 h-full  flex justify-center items-center'>
-          
+          <Helmet>
+        <title>Login || ServFinder</title>
+      </Helmet>
             <div className="card border   w-full max-w-sm shrink-0 shadow-2xl">
       <div className="card-body">
         <form onSubmit={handleLogin}  className="fieldset">

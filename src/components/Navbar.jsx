@@ -11,8 +11,8 @@ logOut()
       .then(() => {
         Swal.fire({
           icon: "success",
-          title: "You have successfully logged out.",
-          text: "Log Out Successful",
+          title: "Congratulations",
+          text: "You Have Successfully Logged Out Successful",
         });
       })
       .catch((error) => {});

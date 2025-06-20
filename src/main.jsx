@@ -16,6 +16,8 @@ import MyReviews from './pages/MyReviews.jsx';
 import Login from './pages/Login.jsx';
 import Register from './pages/Register.jsx';
 import AuthProvider from './provider/AuthProvider.jsx';
+import Error from './pages/Error.jsx';
+import Loading from './components/Loading.jsx';
 
 const router = createBrowserRouter([
   {
@@ -28,6 +30,8 @@ const router = createBrowserRouter([
       },
       {
         path:'/services',
+        hydrateFallbackElement:<Loading></Loading>,
+        loader:()=>fetch('http://localhost:3000/services'),
         Component:Services
       },
       
@@ -51,6 +55,10 @@ const router = createBrowserRouter([
         path:'/signup',
         Component:Register
       },
+      {
+        path:'*',
+        Component:Error
+      }
     ]
   },
   

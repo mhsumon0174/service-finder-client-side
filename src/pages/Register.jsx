@@ -6,6 +6,7 @@ import Swal from 'sweetalert2';
 import { AuthContext } from '../provider/AUthContext';
 import Lottie from 'lottie-react';
 import registerLottie from '../assets/lotties/register.json'
+import { Helmet } from 'react-helmet';
 const Register = () => {
   const navigate=useNavigate()
   const {user,setUser,createUser,googleSignUp,updateUser}=use(AuthContext)
@@ -90,7 +91,7 @@ return Swal.fire({
 return Swal.fire({
         icon: "success",
         title: "Congratulations",
-        text: "You have successfully registered and logged in",
+        text: "You have successfully  logged in",
       });
 
 }).catch((error)=>{
@@ -104,7 +105,9 @@ return Swal.fire({
     }
     return (
         <div >
-          
+          <Helmet>
+        <title>Register || ServFinder</title>
+      </Helmet>
             <div className="my-10 flex-col-reverse md:flex-row
              flex justify-center gap-5  items-center">
         
