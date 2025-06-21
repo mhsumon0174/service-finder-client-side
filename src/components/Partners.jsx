@@ -21,7 +21,7 @@ const Partners = () => {
 ];
     return (
           <div className="my-16 px-4 max-w-6xl mx-auto">
-      <h2 className="text-3xl font-bold text-center mb-8">Meet Our Partners</h2>
+      <h2 className="text-center mb-20 font-bold text-3xl md:text-5xl">Meet Our Partners</h2>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
         {partners.map((partner, index) => (
           <div key={index} className="bg-white p-6 rounded-xl shadow-md text-center hover:shadow-lg transition duration-300">

@@ -11,7 +11,8 @@ const Register = () => {
   const navigate=useNavigate()
   const {user,setUser,createUser,googleSignUp,updateUser}=use(AuthContext)
     const [showPassword,setShowPassword]=useState(false)
-     const handleShowPassword=()=>{
+     const handleShowPassword=(e)=>{
+      e.preventDefault()
 setShowPassword(!showPassword)
     }
     const handleSignUp=(e)=>{
@@ -22,7 +23,7 @@ const name=form.name.value;
 const photo=form.photoURL.value;
 const email=form.email.value;
 const password=form.password.value;
-console.log(name,email,photo,password)
+
 const upperCase=/[A-Z]/.test(password);
 const lowerCase=/[a-z]/.test(password);
 const length=password.length>=6;
@@ -61,6 +62,13 @@ else{
 setUser({...user,displayName:name,
       photoURL:photo})
     })
+    fetch('http://localhost:3000/users', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+              email: email,
+              }),
+            });
   }
   updateUser()
   
@@ -86,6 +94,14 @@ return Swal.fire({
       e.preventDefault()
       googleSignUp()
       .then((data)=>{
+        
+        fetch('http://localhost:3000/users', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+              email: data.user.email,
+              }),
+            });
    navigate('/')
   
 return Swal.fire({

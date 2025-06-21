@@ -7,6 +7,9 @@ import Partners from './Partners';
 import { Helmet } from 'react-helmet';
 import Loading from './Loading';
 import TopServices from './TopServices';
+import StatsSection from './StatsSection';
+import Blogs from './Blogs';
+import HomeReviewsShow from './HomeReviewsShow';
 
 const Home = () => {
     const {user,loading}=use(AuthContext)
@@ -33,8 +36,9 @@ const Home = () => {
             <div>
          <TopServices></TopServices>
             </div>
-          
-
+            <StatsSection></StatsSection>
+          <Blogs></Blogs>
+<HomeReviewsShow></HomeReviewsShow>
         </div>
     );
 };
