@@ -3,8 +3,10 @@ import { AuthContext } from "../provider/AUthContext";
 import axios from "axios";
 import Swal from "sweetalert2";
 import { Helmet } from "react-helmet";
+import { useNavigate } from "react-router";
 
 const AddService = () => {
+  const navigate=useNavigate()
   const { user } = use(AuthContext);
   const handleForm = (e) => {
     e.preventDefault();
@@ -19,8 +21,11 @@ const AddService = () => {
           icon: "success",
           title: "Congratulations",
           text: "Your Data Has Been Successfully Stored And Posted",
+        draggable: true,
+            timer: 1400,
         });
         e.target.reset();
+        navigate('/services')
       })
       .catch((error) => {
         Swal.fire({

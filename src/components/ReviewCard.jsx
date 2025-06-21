@@ -3,8 +3,9 @@ import { FaEdit, FaStar } from 'react-icons/fa';
 import { MdDeleteForever } from 'react-icons/md';
 import { AuthContext } from '../provider/AUthContext';
 import axios from 'axios';
+import Swal from 'sweetalert2';
 
-const ReviewCard = ({ review,index }) => {
+const ReviewCard = ({ review,index,fetchReviews }) => {
   const { user } = useContext(AuthContext);
   const [editData, setEditData] = useState(null);
 
@@ -21,17 +22,70 @@ const ReviewCard = ({ review,index }) => {
     axios(`http://localhost:3000/editreviews/${_id}`)
       .then((res) => {
         setEditData(res.data[0]);
-       console.log(res.data[0]);
+       
        
       document.getElementById(`my_modal_${index}`).showModal();
    
       })
       .catch((error) => console.log(error));
   };
-
+const handleDelete=(_id)=>{
+Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`http://localhost:3000/reviews/${_id}`, {
+          method: "DELETE",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(),
+        })
+          .then((res) => res.json())
+          .then((result) => {
+            if (result.deletedCount) {
+              
+              Swal.fire({
+                title: "Deleted!",
+                text: "Your Post has been deleted.",
+                icon: "success",
+              });
+              fetchReviews()
+            }
+          });
+      }
+    });
+  }
  
-  const handleForm = (e) => {
+  const handleForm = (e,_id) => {
     e.preventDefault();
+    
+    
+    const review=e.target.review.value;
+    const rate=e.target.rate.value
+   const updatedDetails={
+review,rate
+   }
+   axios.patch(`http://localhost:3000/editreviews/${_id}`,updatedDetails)
+   .then(res=>{
+   fetchReviews()
+    Swal.fire({
+                title: "Updated!",
+                text: "Your Review Has Been Updated.",
+                icon: "success",
+              });
+    
+   })
+   .catch(error=>{
+    console.log(error);
+    
+   })
    
 
     
@@ -59,7 +113,7 @@ const ReviewCard = ({ review,index }) => {
           >
             <FaEdit /> Edit & Update
           </button>
-          <button className="btn w-full btn-outline btn-error">
+          <button onClick={() => handleDelete(review._id)} className="btn w-full btn-outline btn-error">
             <MdDeleteForever /> Delete
           </button>
         </div>
@@ -70,7 +124,7 @@ const ReviewCard = ({ review,index }) => {
          
           <div className="modal-box">
             <h3 className="font-bold text-lg text-center mb-4">Update Your Review</h3>
-            <form onSubmit={handleForm} className="space-y-4">
+            <form onSubmit={(e)=>{handleForm(e,editData._id)}} className="space-y-4">
               <div>
                 <label className="text-sm font-medium text-gray-700">Service Title</label>
                 <input
@@ -87,7 +141,7 @@ const ReviewCard = ({ review,index }) => {
                 <input
                   name="review"
                   type="text"
-                  value={editData?.review || 'edfsf' }
+                  defaultValue={editData?.review  }
                   className="input input-bordered w-full"
                   required
                 />

@@ -16,6 +16,7 @@ import AuthProvider from "./provider/AuthProvider.jsx";
 import Error from "./pages/Error.jsx";
 import Loading from "./components/Loading.jsx";
 import ServiceDetails from "./components/ServiceDetails.jsx";
+import PrivateRoute from "./provider/PrivateRoute.jsx";
 
 const router = createBrowserRouter([
   {
@@ -35,20 +36,26 @@ const router = createBrowserRouter([
       {
         path: "/services/:id",
         loader:({params})=>fetch(`http://localhost:3000/services/${params.id}`),
-        Component: ServiceDetails,
+       element:<PrivateRoute>
+        <ServiceDetails></ServiceDetails>
+       </PrivateRoute>
       },
 
       {
         path: "/addservices",
-        Component: AddService,
+        element:<PrivateRoute>
+          <AddService></AddService>
+        </PrivateRoute>,
       },
       {
         path: "/myservices",
-        Component: MyServices,
+        element:<PrivateRoute><MyServices></MyServices></PrivateRoute>
+       
       },
       {
         path: "/myreviews",
-        Component: MyReviews,
+        element:<PrivateRoute><MyReviews></MyReviews></PrivateRoute>
+       
       },
       {
         path: "/login",

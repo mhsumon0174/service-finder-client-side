@@ -7,8 +7,8 @@ import ReviewCard from '../components/ReviewCard';
 const MyReviews = () => {
     const {user,loading}=use(AuthContext)
     const [data,setData]=useState([])
-      useEffect(() => {
-    axios(`http://localhost:3000/reviews?email=${user?.email}`)
+    const fetchReviews=()=>{
+axios(`http://localhost:3000/reviews?email=${user?.email}`)
       .then((res) => {
         setData(res.data)
         
@@ -16,6 +16,11 @@ const MyReviews = () => {
       .catch((error) => {
         console.log(error);
       });
+    }
+      useEffect(() => {
+    if(user?.email){
+      fetchReviews();
+    }
   }, [user?.email]);
   
   
@@ -28,7 +33,7 @@ const MyReviews = () => {
                 <h1 className='font-bold text-2xl md:text-4xl text-center mb-10 text-amber-400'>Summary Of My Reviews</h1>
                 {
                     data.map((review,index)=>
-                        <ReviewCard key={index} index={index} review={review}></ReviewCard>
+                        <ReviewCard  fetchReviews={fetchReviews}   key={index} index={index} review={review}></ReviewCard>
 
                     )
                 }
