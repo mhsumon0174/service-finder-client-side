@@ -1,13 +1,38 @@
-import React from 'react';
+import axios from 'axios';
+import React, { use, useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet';
+import { AuthContext } from '../provider/AUthContext';
+import ReviewCard from '../components/ReviewCard';
 
 const MyReviews = () => {
+    const {user,loading}=use(AuthContext)
+    const [data,setData]=useState([])
+      useEffect(() => {
+    axios(`http://localhost:3000/reviews?email=${user?.email}`)
+      .then((res) => {
+        setData(res.data)
+        
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, [user?.email]);
+  
+  
     return (
         <div>
             <Helmet>
         <title>My Reviews || ServFinder</title>
       </Helmet>
-            
+            <div className='my-30'>
+                <h1 className='font-bold text-2xl md:text-4xl text-center mb-10 text-amber-400'>Summary Of My Reviews</h1>
+                {
+                    data.map((review,index)=>
+                        <ReviewCard key={index} index={index} review={review}></ReviewCard>
+
+                    )
+                }
+            </div>
         </div>
     );
 };

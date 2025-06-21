@@ -7,7 +7,7 @@ import Loading from '../components/Loading';
 
 const Services = () => {
     const data=useLoaderData()
-    console.log(data);
+    
     const {loading}=use(AuthContext)
     if(loading){
         return <Loading></Loading>

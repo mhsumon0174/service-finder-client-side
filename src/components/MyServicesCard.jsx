@@ -55,8 +55,8 @@ Swal.fire({
   
   return (
     <>
-    <tr className="border  hover:bg-gray-50 transition duration-200">
-      <td className="py-4 border text-center px-4 text-sm text-gray-700 font-medium">{index}</td>
+    <tr className="  hover:bg-gray-50 transition duration-200">
+      <td className="py-4  text-center px-4 text-sm text-gray-700 font-medium">{index}</td>
       <td className="py-4 text-center px-4 text-sm text-gray-800">{service.title}</td>
       <td className="py-4 text-center px-4 text-sm text-blue-600 font-semibold">{service.category}</td>
       <td className="py-4 text-center px-4 text-sm text-green-600 font-bold">BDT {service.price}</td>

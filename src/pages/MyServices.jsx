@@ -4,11 +4,15 @@ import { Helmet } from "react-helmet";
 import { AuthContext } from "../provider/AUthContext";
 import MyServicesCard from "../components/MyServicesCard";
 import Swal from "sweetalert2";
+import Loading from "../components/Loading";
 
 const MyServices = () => {
-   const { user } = useContext(AuthContext);
+   const { user,loading } = useContext(AuthContext);
+  
+  
   const [data, setData] = useState([]);
   const [editData,setEditData]=useState({})
+  
   const handleForm = (e) => {
     e.preventDefault();
     document.getElementById("my_modal").close();
@@ -51,7 +55,9 @@ document.getElementById("my_modal").close();
         console.log(error);
       });
   }, [user?.email,editData]);
-
+if(loading){
+    return <Loading></Loading>
+  }
   return (
     <div className="max-w-6xl mx-auto px-4 my-10">
       <Helmet>
@@ -62,11 +68,11 @@ document.getElementById("my_modal").close();
         My Added Services
       </h2>
 
-      <div className=" bg-white rounded-xl shadow-md">
-        <table className="w-full text-left border">
+      <div className=" bg-white  overflow-auto rounded-xl shadow-md">
+        <table className="w-full text-left  ">
           <thead className="bg-gray-100 text-gray-700 text-sm uppercase tracking-wider">
             <tr>
-              <th className="py-4 px-4 border  text-center">No</th>
+              <th className="py-4 px-4   text-center">No</th>
               <th className="py-4 px-4 text-center">Title</th>
               <th className="py-4 px-4 text-center">Category</th>
               <th className="py-4 px-4 text-center">Price</th>
