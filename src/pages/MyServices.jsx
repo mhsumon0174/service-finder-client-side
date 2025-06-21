@@ -51,20 +51,13 @@ document.getElementById("my_modal").close();
         console.log(error);
       });
   }, [user?.email,editData]);
-// const handleDummy=()=>{
-// Swal.fire({
-//             title: "Data Updated Successfully!",
-//             icon: "success",
-//             draggable: true,
-//             timer: 1400,
-//           });
-// }
+
   return (
     <div className="max-w-6xl mx-auto px-4 my-10">
       <Helmet>
         <title>My Services || ServFinder</title>
       </Helmet>
-{/* <button onClick={handleDummy} className="btn">Dummy</button> */}
+
       <h2 className="text-2xl md:text-4xl font-bold mb-10 text-center text-gray-800">
         My Added Services
       </h2>
@@ -87,6 +80,8 @@ document.getElementById("my_modal").close();
                 setEditData={setEditData}
                 service={service}
                 index={index + 1}
+                data={data}
+                setData={setData}
               />
             ))}
           </tbody>

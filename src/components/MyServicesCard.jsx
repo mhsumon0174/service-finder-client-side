@@ -3,7 +3,8 @@ import { Link } from "react-router";
 import { FaEdit } from "react-icons/fa";
 import { MdDeleteForever } from "react-icons/md";
 import axios from "axios";
-const MyServicesCard = ({ service, index,setEditData }) => {
+import Swal from "sweetalert2";
+const MyServicesCard = ({ service, index,setEditData,data,setData }) => {
   
   const handleEdit=(_id)=>{
     
@@ -17,7 +18,40 @@ const MyServicesCard = ({ service, index,setEditData }) => {
 document.getElementById('my_modal').showModal()
   }
   
-  
+  const handleDelete=(_id)=>{
+Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`http://localhost:3000/services/${_id}`, {
+          method: "DELETE",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(),
+        })
+          .then((res) => res.json())
+          .then((result) => {
+            if (result.deletedCount) {
+              
+              Swal.fire({
+                title: "Deleted!",
+                text: "Your Post has been deleted.",
+                icon: "success",
+              });
+              const remainingService=data.filter(post=>post._id !==_id);
+              setData(remainingService);
+            }
+          });
+      }
+    });
+  }
   
   return (
     <>
@@ -37,7 +71,9 @@ document.getElementById('my_modal').showModal()
           </button>
         </Link>
         <Link>
-          <button  className="btn btn-sm btn-outline btn-info ">
+          <button onClick={()=>{
+            handleDelete(service._id)
+          }}  className="btn btn-sm btn-outline btn-info ">
            <MdDeleteForever />
           </button>
         </Link>
