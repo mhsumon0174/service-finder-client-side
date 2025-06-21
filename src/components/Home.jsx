@@ -9,6 +9,7 @@ import TopServices from './TopServices';
 import StatsSection from './StatsSection';
 import Blogs from './Blogs';
 import HomeReviewsShow from './HomeReviewsShow';
+import ContactForm from './ContactForm';
 
 const Home = () => {
   const { user, loading } = useContext(AuthContext);
@@ -78,6 +79,7 @@ const Home = () => {
       <StatsSection />
       <Blogs />
       <HomeReviewsShow />
+      <ContactForm></ContactForm>
     </div>
   );
 };

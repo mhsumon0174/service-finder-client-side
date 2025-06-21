@@ -1,135 +1,133 @@
-import React, { use, useState } from 'react';
-import { FaEye, FaEyeSlash } from 'react-icons/fa';
-import { FcGoogle } from 'react-icons/fc';
-import { Link, useNavigate } from 'react-router';
-import Swal from 'sweetalert2';
-import { AuthContext } from '../provider/AUthContext';
-import Lottie from 'lottie-react';
-import registerLottie from '../assets/lotties/register.json'
-import { Helmet } from 'react-helmet';
+import React, { use, useState } from "react";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { FcGoogle } from "react-icons/fc";
+import { Link, useNavigate } from "react-router";
+import Swal from "sweetalert2";
+import { AuthContext } from "../provider/AUthContext";
+import Lottie from "lottie-react";
+import registerLottie from "../assets/lotties/register.json";
+import { Helmet } from "react-helmet";
 const Register = () => {
-  const navigate=useNavigate()
-  const {user,setUser,createUser,googleSignUp,updateUser}=use(AuthContext)
-    const [showPassword,setShowPassword]=useState(false)
-     const handleShowPassword=(e)=>{
-      e.preventDefault()
-setShowPassword(!showPassword)
-    }
-    const handleSignUp=(e)=>{
-e.preventDefault()
-const form=e.target;
+  const navigate = useNavigate();
+  const { user, setUser, createUser, googleSignUp, updateUser } =
+    use(AuthContext);
+  const [showPassword, setShowPassword] = useState(false);
+  const handleShowPassword = (e) => {
+    e.preventDefault();
+    setShowPassword(!showPassword);
+  };
+  const handleSignUp = (e) => {
+    e.preventDefault();
+    const form = e.target;
 
-const name=form.name.value;
-const photo=form.photoURL.value;
-const email=form.email.value;
-const password=form.password.value;
+    const name = form.name.value;
+    const photo = form.photoURL.value;
+    const email = form.email.value;
+    const password = form.password.value;
 
-const upperCase=/[A-Z]/.test(password);
-const lowerCase=/[a-z]/.test(password);
-const length=password.length>=6;
-if(!upperCase){
+    const upperCase = /[A-Z]/.test(password);
+    const lowerCase = /[a-z]/.test(password);
+    const length = password.length >= 6;
+    if (!upperCase) {
       return Swal.fire({
         icon: "error",
         title: "Oops...",
         text: "Password must have at least one UPPERCASE letter.",
       });
     }
-    if(!lowerCase){
+    if (!lowerCase) {
       return Swal.fire({
         icon: "error",
         title: "Oops...",
         text: "Password must have at least one LOWERCASE letter.",
       });
     }
-    if(!length){
+    if (!length) {
       return Swal.fire({
         icon: "error",
         title: "Oops...",
         text: "Password must have at least six characters.",
       });
-    }
-    
-else{
-  createUser(email,password)
-.then((data)=>{
-  const user=data.user;
-  if(user){
-    updateUser({
-      displayName:name,
-      photoURL:photo
-    })
-    .then(data=>{
-setUser({...user,displayName:name,
-      photoURL:photo})
-    })
-    fetch('http://localhost:3000/users', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
+    } else {
+      createUser(email, password)
+        .then((data) => {
+          const user = data.user;
+          if (user) {
+            updateUser({
+              displayName: name,
+              photoURL: photo,
+            }).then((data) => {
+              setUser({ ...user, displayName: name, photoURL: photo });
+            });
+            fetch("http://localhost:3000/users", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
               body: JSON.stringify({
-              email: email,
+                email: email,
               }),
             });
-  }
-  updateUser()
-  
-   navigate('/')
-return Swal.fire({
-        icon: "success",
-        title: "Congratulations",
-        text: "You have successfully registered and logged in",
-      });
+          }
+          updateUser();
 
-}).catch((error)=>{
-  return Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: error.message,
-      });
-  
-})
-}
-    
+          navigate("/");
+          return Swal.fire({
+            icon: "success",
+            title: "Congratulations",
+            text: "You have successfully registered and logged in",
+            draggable: true,
+            timer: 1400,
+          });
+        })
+        .catch((error) => {
+          return Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: error.message,
+          });
+        });
     }
-    const handleGoogleSignUp=(e)=>{
-      e.preventDefault()
-      googleSignUp()
-      .then((data)=>{
-        
-        fetch('http://localhost:3000/users', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({
-              email: data.user.email,
-              }),
-            });
-   navigate('/')
-  
-return Swal.fire({
-        icon: "success",
-        title: "Congratulations",
-        text: "You have successfully  logged in",
-      });
+  };
+  const handleGoogleSignUp = (e) => {
+    e.preventDefault();
+    googleSignUp()
+      .then((data) => {
+        fetch("http://localhost:3000/users", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            email: data.user.email,
+          }),
+        });
+        navigate("/");
 
-}).catch((error)=>{
-  return Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: error.message,
+        return Swal.fire({
+          icon: "success",
+          title: "Congratulations",
+          text: "You have successfully  logged in",
+          draggable: true,
+          timer: 1400,
+        });
+      })
+      .catch((error) => {
+        return Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: error.message,
+        });
       });
-  
-})
-    }
-    return (
-        <div >
-          <Helmet>
+  };
+  return (
+    <div>
+      <Helmet>
         <title>Register || ServFinder</title>
       </Helmet>
-            <div className="my-10 flex-col-reverse md:flex-row
-             flex justify-center gap-5  items-center">
-        
+      <div
+        className="my-10 flex-col-reverse md:flex-row
+             flex justify-center gap-5  items-center"
+      >
         <div className="card border  w-full max-w-sm shrink-0 shadow-2xl">
           <div className="card-body">
-            <form onSubmit={handleSignUp}  className="fieldset">
+            <form onSubmit={handleSignUp} className="fieldset">
               <h1 className="text-center text-3xl font-bold">Sign Up</h1>
               <label className="label">Name</label>
               <input
@@ -156,23 +154,28 @@ return Swal.fire({
                 placeholder="Email"
               />
               <label className="label">Password</label>
-              <div className='relative'>
-
+              <div className="relative">
                 <input
-                type={showPassword? 'text':'password'}
-                name="password"
-                required
-                className="input"
-                placeholder="Password"
-                
-              />
-              <button onClick={handleShowPassword} className='btn btn-ghost btn-xs absolute top-2 right-5'>{showPassword? <FaEyeSlash/>:<FaEye/>} </button>
+                  type={showPassword ? "text" : "password"}
+                  name="password"
+                  required
+                  className="input"
+                  placeholder="Password"
+                />
+                <button
+                  onClick={handleShowPassword}
+                  className="btn btn-ghost btn-xs absolute top-2 right-5"
+                >
+                  {showPassword ? <FaEyeSlash /> : <FaEye />}{" "}
+                </button>
               </div>
 
-              <button className="btn btn-outline btn-primary  my-4">SignUp</button>
-              <button onClick={handleGoogleSignUp}
+              <button className="btn btn-outline btn-primary  my-4">
+                SignUp
+              </button>
+              <button
+                onClick={handleGoogleSignUp}
                 className="btn btn-outline btn-accent"
-                
               >
                 <FcGoogle></FcGoogle> Sign Up With Google
               </button>
@@ -185,11 +188,14 @@ return Swal.fire({
             </p>
           </div>
         </div>
-        <Lottie style={{width:'300px'}}  animationData={registerLottie} loop={true}></Lottie>
+        <Lottie
+          style={{ width: "300px" }}
+          animationData={registerLottie}
+          loop={true}
+        ></Lottie>
       </div>
-      
-        </div>
-    );
+    </div>
+  );
 };
 
 export default Register;
