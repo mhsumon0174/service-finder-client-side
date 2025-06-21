@@ -25,15 +25,15 @@ const StatsSection = () => {
   <div className="stats-container flex flex-col md:flex-row justify-around bg-gray-100 p-10 rounded-lg gap-6">
     <div className="text-center">
       <h3 className="text-xl font-semibold mb-2">Users</h3>
-      <CountUp start={0} end={stats.totalUsers} duration={2} suffix="+" className="text-4xl font-bold text-blue-600" />
+      <CountUp start={0} end={stats.totalUsers} duration={5} suffix="+" className="text-4xl font-bold text-blue-600" />
     </div>
     <div className="text-center">
       <h3 className="text-xl font-semibold mb-2">Services</h3>
-      <CountUp start={0} end={stats.totalServices} duration={2} suffix="+" className="text-4xl font-bold text-green-600" />
+      <CountUp start={0} end={stats.totalServices} duration={5} suffix="+" className="text-4xl font-bold text-green-600" />
     </div>
     <div className="text-center">
       <h3 className="text-xl font-semibold mb-2">Reviews</h3>
-      <CountUp start={0} end={stats.totalReviews} duration={2} suffix="+" className="text-4xl font-bold text-purple-600" />
+      <CountUp start={0} end={stats.totalReviews} duration={8} suffix="+" className="text-4xl font-bold text-purple-600" />
     </div>
   </div>
 </div>

@@ -1,2 +1,26 @@
 @import "tailwindcss";
 @plugin "daisyui";
+
+
+.custom-carousel .thumbs-wrapper {
+  margin: 20px 0;
+  display: flex;
+  justify-content: center;
+}
+
+.custom-carousel .thumb {
+    
+  border-radius: 8px;
+  overflow: hidden;
+  height: 35px;
+  width: 50px !important;
+  margin: 0 5px;
+  border: 2px solid aquamarine;
+  transition: all 0.3s ease;
+}
+
+.custom-carousel .thumb.selected,
+.custom-carousel .thumb:hover {
+  border-color: aqua; 
+}
+
