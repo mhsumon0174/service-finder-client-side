@@ -17,7 +17,7 @@ const ReviewCard = ({ review, index, fetchReviews }) => {
   const handleEdit = (_id) => {
     console.log(_id);
 
-    axios(`http://localhost:3000/editreviews/${_id}`, {})
+    axios(`https://assignment-11-server-fawn-seven.vercel.app/editreviews/${_id}`, {})
       .then((res) => {
         setEditData(res.data[0]);
 
@@ -36,7 +36,7 @@ const ReviewCard = ({ review, index, fetchReviews }) => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:3000/reviews/${_id}`,  {
+        fetch(`https://assignment-11-server-fawn-seven.vercel.app/reviews/${_id}`,  {
           method: "DELETE",
           headers: {
             "content-type": "application/json",
@@ -71,7 +71,7 @@ const ReviewCard = ({ review, index, fetchReviews }) => {
       email: user?.email,
     };
     axios
-      .patch(`http://localhost:3000/editreviews/${_id}`, updatedDetails, {
+      .patch(`https://assignment-11-server-fawn-seven.vercel.app/editreviews/${_id}`, updatedDetails, {
         withCredentials: true,
       })
       .then((res) => {

@@ -8,7 +8,7 @@ import { AuthContext } from "../provider/AUthContext";
 const MyServicesCard = ({ service, index, setEditData,fetchReviews }) => {
   const {user}=use(AuthContext)
   const handleEdit = (_id) => {
-    axios(`http://localhost:3000/services/${_id}`,{
+    axios(`https://assignment-11-server-fawn-seven.vercel.app/services/${_id}`,{
       
     })
       .then((res) => {
@@ -31,7 +31,7 @@ const MyServicesCard = ({ service, index, setEditData,fetchReviews }) => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:3000/services/${_id}`, {
+        fetch(`https://assignment-11-server-fawn-seven.vercel.app/services/${_id}`, {
           method: "DELETE",
           headers: {
             "content-type": "application/json",

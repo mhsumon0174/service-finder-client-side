@@ -9,7 +9,7 @@ const TopServices = () => {
     const [data,setData]=useState([])
     const[seeLess,setSeeLess]=useState(true)
     useEffect(()=>{
-        axios('http://localhost:3000/services?limit=6')
+        axios('https://assignment-11-server-fawn-seven.vercel.app/services?limit=6')
         .then(res=>{
             setData(res.data)
             
@@ -24,7 +24,7 @@ const TopServices = () => {
     }
     const handleSeeAll=()=>{
      
-            axios('http://localhost:3000/services')
+            axios('https://assignment-11-server-fawn-seven.vercel.app/services')
         .then(res=>{
             setData(res.data)
             setSeeLess(!seeLess)
@@ -36,7 +36,7 @@ const TopServices = () => {
         
     }
     const handleSeeLess=()=>{
-        axios('http://localhost:3000/services?limit=6')
+        axios('https://assignment-11-server-fawn-seven.vercel.app/services?limit=6')
         .then(res=>{
             setData(res.data)
             setSeeLess(!seeLess)

@@ -33,7 +33,7 @@ useEffect(()=>{
             setLoading(false)
             if(currentUser?.email){
                 const userData={email:currentUser.email}
-                axios.post('http://localhost:3000/jwt',userData,{
+                axios.post('https://assignment-11-server-fawn-seven.vercel.app/jwt',userData,{
                     withCredentials:true
                 })
                 .then(res=>{

@@ -10,7 +10,7 @@ console.log(typeof data);
 
 
   useEffect(() => {
-    axios(`http://localhost:3000/reviews/${_id}`)
+    axios(`https://assignment-11-server-fawn-seven.vercel.app/reviews/${_id}`)
       .then((res) => {
         setData(res.data);
       })

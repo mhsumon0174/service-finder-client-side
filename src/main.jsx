@@ -30,12 +30,12 @@ const router = createBrowserRouter([
       {
         path: "/services",
         hydrateFallbackElement: <Loading></Loading>,
-        loader: () => fetch("http://localhost:3000/services"),
+        loader: () => fetch("https://assignment-11-server-fawn-seven.vercel.app/services"),
         Component: Services,
       },
       {
         path: "/services/:id",
-        loader:({params})=>fetch(`http://localhost:3000/services/${params.id}`),
+        loader:({params})=>fetch(`https://assignment-11-server-fawn-seven.vercel.app/services/${params.id}`),
        Component:ServiceDetails
       },
 

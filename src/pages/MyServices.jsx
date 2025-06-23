@@ -19,7 +19,7 @@ const MyServices = () => {
     const formData = new FormData(e.target);
     const updatedData = Object.fromEntries(formData.entries());
 
-    fetch(`http://localhost:3000/services/${editData._id}`, {
+    fetch(`https://assignment-11-server-fawn-seven.vercel.app/services/${editData._id}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",
@@ -48,7 +48,7 @@ const MyServices = () => {
     setEditData(null);
   };
   const fetchReviews = () => {
-    axios(`http://localhost:3000/myservices?email=${user?.email}`,{
+    axios(`https://assignment-11-server-fawn-seven.vercel.app/myservices?email=${user?.email}`,{
       withCredentials:true
     })
       .then((res) => {

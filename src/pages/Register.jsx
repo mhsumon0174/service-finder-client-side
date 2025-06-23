@@ -59,7 +59,7 @@ const Register = () => {
             }).then((data) => {
               setUser({ ...user, displayName: name, photoURL: photo });
             });
-            fetch("http://localhost:3000/users", {
+            fetch("https://assignment-11-server-fawn-seven.vercel.app/users", {
               method: "POST",
               headers: { "Content-Type": "application/json" },
               body: JSON.stringify({
@@ -91,7 +91,7 @@ const Register = () => {
     e.preventDefault();
     googleSignUp()
       .then((data) => {
-        fetch("http://localhost:3000/users", {
+        fetch("https://assignment-11-server-fawn-seven.vercel.app/users", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({

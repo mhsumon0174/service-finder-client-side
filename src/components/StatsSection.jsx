@@ -10,7 +10,7 @@ const StatsSection = () => {
   });
 
   useEffect(() => {
-    axios.get('http://localhost:3000/stats')
+    axios.get('https://assignment-11-server-fawn-seven.vercel.app/stats')
       .then(res => {
         setStats(res.data);
       })

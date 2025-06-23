@@ -15,7 +15,7 @@ const AddService = () => {
     data.addDate = new Date().toLocaleString();
 
     axios
-      .post("http://localhost:3000/addservices", data,{
+      .post("https://assignment-11-server-fawn-seven.vercel.app/addservices", data,{
         withCredentials:true
       })
       .then((res) => {

@@ -33,7 +33,7 @@ return navigate('/login')
       serviceTitle:title
     };
     axios
-      .post("http://localhost:3000/addReviews", reviewDetails,{
+      .post("https://assignment-11-server-fawn-seven.vercel.app/addReviews", reviewDetails,{
         withCredentials:true
       })
       .then((res) => {

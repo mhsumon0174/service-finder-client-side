@@ -6,7 +6,7 @@ const HomeReviewsShow = () => {
   const [reviews, setReviews] = useState([]);
 
   const fetchReviews = () => {
-    axios.get('http://localhost:3000/reviews')
+    axios.get('https://assignment-11-server-fawn-seven.vercel.app/reviews')
       .then(res => {
         setReviews(res.data);
       })
