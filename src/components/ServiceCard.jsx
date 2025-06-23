@@ -38,7 +38,7 @@ const ServiceCard = ({ service }) => {
           <div className="flex items-center justify-between mt-auto">
             <span className="text-lg font-semibold text-green-600">BDT {price}</span>
             <Link to={`/services/${_id}`}>
-              <button onClick={handleDetails} className="btn btn-error btn-sm text-white font-bold hover:scale-105 transition-transform">
+              <button onClick={()=>{handleDetails(),window.scrollTo(0,0)}} className="btn btn-error btn-sm text-white font-bold hover:scale-105 transition-transform">
                 See Details
               </button>
             </Link>

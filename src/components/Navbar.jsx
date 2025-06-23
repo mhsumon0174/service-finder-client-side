@@ -3,6 +3,7 @@ import { Link, NavLink } from 'react-router';
 import { AuthContext } from '../provider/AUthContext';
 import Swal from 'sweetalert2';
 import { Tooltip } from "react-tooltip";
+import { FaRegUserCircle } from 'react-icons/fa';
 const Navbar = () => {
   
   const {user,logOut}=use(AuthContext)
@@ -13,6 +14,7 @@ logOut()
           icon: "success",
           title: "Congratulations",
           text: "You Have Successfully Logged Out Successful",
+          timer:1400
         });
       })
       .catch((error) => {});
@@ -45,7 +47,7 @@ logOut()
         {links}
       </ul>
     </div>
-    <img className='md:w-[40px] w-[25px]' src="https://i.ibb.co/XfHPrns0/servfinder-1-modified.png" alt="" />
+    <img className='md:w-[40px] w-[25px] ' src="https://i.ibb.co/fYbZ6L8V/servfinder-1-modified.png" alt="" />
   </div>
   <div className="navbar-center hidden lg:flex">
     <ul className="menu menu-horizontal px-1">
@@ -60,7 +62,7 @@ logOut()
       <img
       data-tooltip-id="my-tooltip"
   data-tooltip-content={user.displayName}
-       className="rounded-full w-8 sm:w-10" src={user.photoURL} alt="" />
+       className="rounded-full w-8 sm:w-10" src={user.photoURL? user.photoURL:'https://i.ibb.co/MkLCp5dc/user.png'} alt="" />
       <Link to='/login'><button onClick={handleSignOut} className='btn btn-outline btn-secondary'>Logout</button></Link>
     </div> :
   <div className='space-x-4'>

@@ -15,7 +15,9 @@ const AddService = () => {
     data.addDate = new Date().toLocaleString();
 
     axios
-      .post("http://localhost:3000/addservices", data)
+      .post("http://localhost:3000/addservices", data,{
+        withCredentials:true
+      })
       .then((res) => {
         Swal.fire({
           icon: "success",

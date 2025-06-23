@@ -4,17 +4,23 @@ import Rating from "react-rating";
 import { AuthContext } from "../provider/AUthContext";
 import axios from "axios";
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router";
 
 
 const Review = ({ _id, data, setData,title }) => {
   const { user } = use(AuthContext);
   const [rate, setRate] = useState(0);
   const currentDate = new Date().toLocaleDateString();
+  const navigate=useNavigate()
   
   const handleForm = (e) => {
+
     e.preventDefault();
+    if(!user?.email){
+return navigate('/login')
+    }
     const review = e.target.review.value;
-    console.log(user);
+    
 
     const reviewDetails = {
       review,
@@ -27,7 +33,9 @@ const Review = ({ _id, data, setData,title }) => {
       serviceTitle:title
     };
     axios
-      .post("http://localhost:3000/addReviews", reviewDetails)
+      .post("http://localhost:3000/addReviews", reviewDetails,{
+        withCredentials:true
+      })
       .then((res) => {
         Swal.fire({
           icon: "success",

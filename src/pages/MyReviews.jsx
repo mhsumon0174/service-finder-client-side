@@ -8,7 +8,9 @@ const MyReviews = () => {
     const {user,loading}=use(AuthContext)
     const [data,setData]=useState([])
     const fetchReviews=()=>{
-axios(`http://localhost:3000/reviews?email=${user?.email}`)
+axios(`http://localhost:3000/myreviews?email=${user?.email}`,{
+  withCredentials:true
+})
       .then((res) => {
         setData(res.data)
         

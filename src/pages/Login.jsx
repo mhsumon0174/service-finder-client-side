@@ -27,6 +27,7 @@ const Login = () => {
             icon: "success",
             title: "You have successfully logged in.",
             text: "Login Successful",
+            timer:1400
           });
         }
       })
@@ -49,7 +50,7 @@ const Login = () => {
           title: "Congratulations",
           text: "You have successfully  logged in",
           draggable: true,
-          timer: 1400,
+          timer: 1400
         });
       })
       .catch((error) => {

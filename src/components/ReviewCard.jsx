@@ -1,36 +1,32 @@
-import React, { useState, useContext } from 'react';
-import { FaEdit, FaStar } from 'react-icons/fa';
-import { MdDeleteForever } from 'react-icons/md';
-import { AuthContext } from '../provider/AUthContext';
-import axios from 'axios';
-import Swal from 'sweetalert2';
+import React, { useState, useContext } from "react";
+import { FaEdit, FaStar } from "react-icons/fa";
+import { MdDeleteForever } from "react-icons/md";
+import { AuthContext } from "../provider/AUthContext";
+import axios from "axios";
+import Swal from "sweetalert2";
 
-const ReviewCard = ({ review,index,fetchReviews }) => {
+const ReviewCard = ({ review, index, fetchReviews }) => {
   const { user } = useContext(AuthContext);
   const [editData, setEditData] = useState(null);
 
- 
   const stars = [];
   for (let i = 0; i < Number(review.rate || 0); i++) {
     stars.push(<FaStar key={i} className="text-yellow-500" />);
   }
 
-  
   const handleEdit = (_id) => {
     console.log(_id);
-    
-    axios(`http://localhost:3000/editreviews/${_id}`)
+
+    axios(`http://localhost:3000/editreviews/${_id}`, {})
       .then((res) => {
         setEditData(res.data[0]);
-       
-       
-      document.getElementById(`my_modal_${index}`).showModal();
-   
+
+        document.getElementById(`my_modal_${index}`).showModal();
       })
       .catch((error) => console.log(error));
   };
-const handleDelete=(_id)=>{
-Swal.fire({
+  const handleDelete = (_id) => {
+    Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
       icon: "warning",
@@ -40,58 +36,57 @@ Swal.fire({
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:3000/reviews/${_id}`, {
+        fetch(`http://localhost:3000/reviews/${_id}`,  {
           method: "DELETE",
           headers: {
             "content-type": "application/json",
           },
-          body: JSON.stringify(),
+          body: JSON.stringify({ email: user?.email }),
+          credentials: "include",
         })
           .then((res) => res.json())
           .then((result) => {
             if (result.deletedCount) {
-              
               Swal.fire({
                 title: "Deleted!",
                 text: "Your Post has been deleted.",
                 icon: "success",
+                timer: 1400,
               });
-              fetchReviews()
+              fetchReviews();
             }
           });
       }
     });
-  }
- 
-  const handleForm = (e,_id) => {
+  };
+
+  const handleForm = (e, _id) => {
     e.preventDefault();
-    
-    
-    const review=e.target.review.value;
-    const rate=e.target.rate.value
-   const updatedDetails={
-review,rate
-   }
-   axios.patch(`http://localhost:3000/editreviews/${_id}`,updatedDetails)
-   .then(res=>{
-   fetchReviews()
-    Swal.fire({
-                title: "Updated!",
-                text: "Your Review Has Been Updated.",
-                icon: "success",
-              });
-    
-   })
-   .catch(error=>{
-    console.log(error);
-    
-   })
-   
 
-    
-    
+    const review = e.target.review.value;
+    const rate = e.target.rate.value;
+    const updatedDetails = {
+      review,
+      rate,
+      email: user?.email,
+    };
+    axios
+      .patch(`http://localhost:3000/editreviews/${_id}`, updatedDetails, {
+        withCredentials: true,
+      })
+      .then((res) => {
+        fetchReviews();
+        Swal.fire({
+          title: "Updated!",
+          text: "Your Review Has Been Updated.",
+          icon: "success",
+          timer: 1400,
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
 
-    
     document.getElementById(`my_modal_${index}`).close();
   };
 
@@ -113,78 +108,96 @@ review,rate
           >
             <FaEdit /> Edit & Update
           </button>
-          <button onClick={() => handleDelete(review._id)} className="btn w-full btn-outline btn-error">
+          <button
+            onClick={() => handleDelete(review._id)}
+            className="btn w-full btn-outline btn-error"
+          >
             <MdDeleteForever /> Delete
           </button>
         </div>
       </div>
 
-      
-      <dialog id={`my_modal_${index}`} className="modal modal-bottom sm:modal-middle">
-         
-          <div className="modal-box">
-            <h3 className="font-bold text-lg text-center mb-4">Update Your Review</h3>
-            <form onSubmit={(e)=>{handleForm(e,editData._id)}} className="space-y-4">
-              <div>
-                <label className="text-sm font-medium text-gray-700">Service Title</label>
-                <input
-                  name="serviceTitle"
-                  type="text"
-                  defaultValue={editData?.serviceTitle}
-                  readOnly
-                  className="input input-bordered w-full"
-                />
-              </div>
-
-              <div>
-                <label className="text-sm font-medium text-gray-700">Review</label>
-                <input
-                  name="review"
-                  type="text"
-                  defaultValue={editData?.review  }
-                  className="input input-bordered w-full"
-                  required
-                />
-              </div>
-
-              <div>
-                <label className="text-sm font-medium text-gray-700">Rating</label>
-                <input
-                  name="rate"
-                  type="number"
-                  max="5"
-                  min="1"
-                  defaultValue={editData?.rate}
-                  className="input input-bordered w-full"
-                  required
-                />
-              </div>
-
-              <div>
-                <label className="text-sm font-medium text-gray-700">Email</label>
-                <input
-                  name="email"
-                  type="email"
-                  value={user?.email}
-                  readOnly
-                  className="input input-bordered w-full"
-                />
-              </div>
-
-              <button type="submit" className="btn btn-primary w-full">
-                Submit Update
-              </button>
-            </form>
-            <div className="mt-3">
-              <button
-                onClick={() => document.getElementById(`my_modal_${index}`).close()}
-                className="btn btn-error w-full"
-              >
-                Close
-              </button>
+      <dialog
+        id={`my_modal_${index}`}
+        className="modal modal-bottom sm:modal-middle"
+      >
+        <div className="modal-box">
+          <h3 className="font-bold text-lg text-center mb-4">
+            Update Your Review
+          </h3>
+          <form
+            onSubmit={(e) => {
+              handleForm(e, editData._id);
+            }}
+            className="space-y-4"
+          >
+            <div>
+              <label className="text-sm font-medium text-gray-700">
+                Service Title
+              </label>
+              <input
+                name="serviceTitle"
+                type="text"
+                defaultValue={editData?.serviceTitle}
+                readOnly
+                className="input input-bordered w-full"
+              />
             </div>
+
+            <div>
+              <label className="text-sm font-medium text-gray-700">
+                Review
+              </label>
+              <input
+                name="review"
+                type="text"
+                defaultValue={editData?.review}
+                className="input input-bordered w-full"
+                required
+              />
+            </div>
+
+            <div>
+              <label className="text-sm font-medium text-gray-700">
+                Rating
+              </label>
+              <input
+                name="rate"
+                type="number"
+                max="5"
+                min="1"
+                defaultValue={editData?.rate}
+                className="input input-bordered w-full"
+                required
+              />
+            </div>
+
+            <div>
+              <label className="text-sm font-medium text-gray-700">Email</label>
+              <input
+                name="email"
+                type="email"
+                value={user?.email}
+                readOnly
+                className="input input-bordered w-full"
+              />
+            </div>
+
+            <button type="submit" className="btn btn-primary w-full">
+              Submit Update
+            </button>
+          </form>
+          <div className="mt-3">
+            <button
+              onClick={() =>
+                document.getElementById(`my_modal_${index}`).close()
+              }
+              className="btn btn-error w-full"
+            >
+              Close
+            </button>
           </div>
-        
+        </div>
       </dialog>
     </div>
   );

@@ -16,7 +16,9 @@ const Services = () => {
     const {loading}=use(AuthContext)
     
     const fetchServices=()=>{
-axios.get('http://localhost:3000/services',{params:query})
+axios.get('http://localhost:3000/services',{params:query},{
+  
+})
 .then(res=>{
     setServices(res.data)
     

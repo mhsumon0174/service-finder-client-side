@@ -9,6 +9,7 @@ import Loading from "../components/Loading";
 const MyServices = () => {
   const { user, loading } = useContext(AuthContext);
 
+
   const [data, setData] = useState([]);
   const [editData, setEditData] = useState({});
 
@@ -24,6 +25,7 @@ const MyServices = () => {
         "content-type": "application/json",
       },
       body: JSON.stringify(updatedData),
+      credentials: "include"
     })
       .then((res) => res.json())
       .then((data) => {
@@ -46,7 +48,9 @@ const MyServices = () => {
     setEditData(null);
   };
   const fetchReviews = () => {
-    axios(`http://localhost:3000/services?email=${user?.email}`)
+    axios(`http://localhost:3000/myservices?email=${user?.email}`,{
+      withCredentials:true
+    })
       .then((res) => {
         setData(res.data);
       })

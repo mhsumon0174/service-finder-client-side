@@ -1,12 +1,16 @@
-import React, { useState } from "react";
+import React, { use, useState } from "react";
 import { Link } from "react-router";
 import { FaEdit } from "react-icons/fa";
 import { MdDeleteForever } from "react-icons/md";
 import axios from "axios";
 import Swal from "sweetalert2";
+import { AuthContext } from "../provider/AUthContext";
 const MyServicesCard = ({ service, index, setEditData,fetchReviews }) => {
+  const {user}=use(AuthContext)
   const handleEdit = (_id) => {
-    axios(`http://localhost:3000/services/${_id}`)
+    axios(`http://localhost:3000/services/${_id}`,{
+      
+    })
       .then((res) => {
         setEditData(res.data);
       })
@@ -32,7 +36,8 @@ const MyServicesCard = ({ service, index, setEditData,fetchReviews }) => {
           headers: {
             "content-type": "application/json",
           },
-          body: JSON.stringify(),
+          body: JSON.stringify({email:user?.email}),
+          credentials:"include"
         })
           .then((res) => res.json())
           .then((result) => {

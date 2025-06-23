@@ -1,7 +1,21 @@
-import React from 'react';
+import React, { use } from 'react';
 import { NavLink } from 'react-router';
+import { AuthContext } from '../provider/AUthContext';
 
 const Footer = () => {
+  const {user}=use(AuthContext)
+  const links=<>
+    <li><NavLink to='/'>Home</NavLink> </li>
+          <li><NavLink to='/services'>Services</NavLink> </li>
+         {
+          user?
+           <>
+            <li><NavLink to='/addservices'>Add Service</NavLink> </li>
+          <li><NavLink to='/myservices'>My Services</NavLink> </li>
+          <li><NavLink to='/myreviews'>My Reviews</NavLink> </li>
+          </>:''
+         }
+    </>
   return (
     <footer className="bg-base-200 text-base-content px-6 py-10">
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-10">
@@ -10,7 +24,7 @@ const Footer = () => {
         <aside className="space-y-3 text-center md:text-left">
           <img
             className="w-14 md:w-20 mx-auto md:mx-0"
-            src="https://i.ibb.co/XfHPrns0/servfinder-1-modified.png"
+            src="https://i.ibb.co/fYbZ6L8V/servfinder-1-modified.png"
             alt="ServFinder Logo"
           />
           <h2 className="text-xl md:text-2xl font-bold">ServFinder Company Ltd.</h2>
@@ -23,11 +37,7 @@ const Footer = () => {
         <nav className='flex flex-col items-center md:block'>
           <h6 className="footer-title">Navigation</h6>
           <ul className="space-y-2">
-            <li><NavLink to="/">Home</NavLink></li>
-            <li><NavLink to="/services">All Services</NavLink></li>
-            <li><NavLink to="/addservices">Add Service</NavLink></li>
-            <li><NavLink to="/myservices">My Services</NavLink></li>
-            <li><NavLink to="/myreviews">My Reviews</NavLink></li>
+           {links}
           </ul>
         </nav>
 

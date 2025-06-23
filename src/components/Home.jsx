@@ -76,9 +76,10 @@ const Home = () => {
       
       <Partners />
       <TopServices />
-      <StatsSection />
+      
       <Blogs />
       <HomeReviewsShow />
+      <StatsSection />
       <ContactForm></ContactForm>
     </div>
   );
