@@ -119,7 +119,7 @@ const Register = () => {
   return (
     <div>
       <Helmet>
-        <title>Register || ServFinder</title>
+        <title>Sign Up || ServFinder</title>
       </Helmet>
       <div
         className="my-10 flex-col-reverse md:flex-row
