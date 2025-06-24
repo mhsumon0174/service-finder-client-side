@@ -74,9 +74,9 @@ const Home = () => {
 
 
       
-      <Partners />
-      <TopServices />
       
+      <TopServices />
+      <Partners />
       <Blogs />
       <HomeReviewsShow />
       <StatsSection />
