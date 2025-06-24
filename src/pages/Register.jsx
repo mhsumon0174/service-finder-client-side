@@ -182,7 +182,7 @@ const Register = () => {
             </form>
             <p>
               Already Have an Account?{" "}
-              <Link className="text-blue-900 underline" to="/login">
+              <Link className="text-blue-900 underline dark:text-green-400" to="/login">
                 Login
               </Link>
             </p>

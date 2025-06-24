@@ -103,7 +103,7 @@ const Login = () => {
           </form>
           <p>
             New to this site? Click here to{" "}
-            <Link className="text-blue-900 underline" to="/signup">
+            <Link className="text-blue-900 dark:text-green-400 underline" to="/signup">
               SignUp
             </Link>
           </p>

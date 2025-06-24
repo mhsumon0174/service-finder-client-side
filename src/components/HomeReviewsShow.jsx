@@ -20,8 +20,8 @@ const HomeReviewsShow = () => {
   }, []);
 
   return (
-    <section className="my-20 px-4 md:px-10">
-      <h2 className="text-center mb-16 font-bold text-3xl md:text-5xl text-slate-800">
+    <section className="my-20 px-4 md:px-10 ">
+      <h2 className="text-center mb-16 font-bold text-3xl md:text-5xl text-slate-800 dark:text-white">
          What Our Users Are Saying
       </h2>
       <div className="grid gap-10 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">

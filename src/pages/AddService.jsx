@@ -38,14 +38,14 @@ const AddService = () => {
       });
   };
   return (
-    <div className="max-w-3xl mx-auto p-8 bg-white shadow-md rounded-xl my-10">
+    <div className="max-w-3xl mx-auto p-8 bg-white dark:bg-black  shadow-md rounded-xl my-10">
       <Helmet>
         <title>Add Service || ServFinder</title>
       </Helmet>
       <h2 className="text-2xl font-bold mb-6 text-center">Add a New Service</h2>
-      <form onSubmit={handleForm} className="space-y-6">
+      <form onSubmit={handleForm} className="space-y-6 ">
   <div>
-    <label className="block text-gray-700 text-sm font-semibold mb-1">Image Link</label>
+    <label className="block text-gray-700 dark:text-white text-sm font-semibold mb-1">Image Link</label>
     <input
       name="image"
       type="text"
@@ -54,7 +54,7 @@ const AddService = () => {
     />
   </div>
   <div>
-    <label className="block text-gray-700 text-sm font-semibold mb-1">Service Name</label>
+    <label className="block text-gray-700 dark:text-white text-sm font-semibold mb-1">Service Name</label>
     <input
       name="title"
       type="text"
@@ -64,7 +64,7 @@ const AddService = () => {
     />
   </div>
   <div>
-    <label className="block text-gray-700 text-sm font-semibold mb-1">Organization</label>
+    <label className="block text-gray-700 dark:text-white text-sm font-semibold mb-1">Organization</label>
     <input
       name="company"
       type="text"
@@ -74,7 +74,7 @@ const AddService = () => {
     />
   </div>
   <div>
-    <label className="block text-gray-700 text-sm font-semibold mb-1">Official Website</label>
+    <label className="block text-gray-700 dark:text-white text-sm font-semibold mb-1">Official Website</label>
     <input
       name="website"
       type="text"
@@ -83,7 +83,7 @@ const AddService = () => {
     />
   </div>
   <div>
-    <label className="block text-gray-700 text-sm font-semibold mb-1">Detailed Info</label>
+    <label className="block text-gray-700 dark:text-white text-sm font-semibold mb-1">Detailed Info</label>
     <textarea
       name="description"
       placeholder="Write a few lines about the service"
@@ -92,7 +92,7 @@ const AddService = () => {
     ></textarea>
   </div>
   <div>
-    <label className="block text-gray-700 text-sm font-semibold mb-1">Service Category</label>
+    <label className="block text-gray-700 dark:text-white text-sm font-semibold mb-1">Service Category</label>
     <input
       name="category"
       type="text"
@@ -102,7 +102,7 @@ const AddService = () => {
     />
   </div>
   <div>
-    <label className="block text-gray-700 text-sm font-semibold mb-1">Pricing</label>
+    <label className="block text-gray-700 dark:text-white text-sm font-semibold mb-1">Pricing</label>
     <input
       name="price"
       type="number"
@@ -112,7 +112,7 @@ const AddService = () => {
     />
   </div>
   <div>
-    <label className="block text-gray-700 text-sm font-semibold mb-1">Contact Email</label>
+    <label className="block text-gray-700 dark:text-white text-sm font-semibold mb-1">Contact Email</label>
     <input
       name="email"
       value={user?.email}

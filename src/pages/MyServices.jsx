@@ -105,12 +105,12 @@ const MyServices = () => {
       <dialog id="my_modal" className="modal modal-bottom sm:modal-middle">
         {editData && (
           <div className="modal-box">
-            <p className="text-center font-bold text-lg md:text-2xl text-gray-700 underline my-2 mb-5">
+            <p className="text-center font-bold text-lg md:text-2xl text-gray-700 dark:text-white underline my-2 mb-5">
               Update Your Service Data
             </p>
             <form onSubmit={handleForm} className="space-y-6">
               <div>
-                <label className="block text-gray-700 text-sm font-semibold mb-1">
+                <label className="block text-gray-700 dark:text-white text-sm font-semibold mb-1">
                   Image Link
                 </label>
                 <input
@@ -122,7 +122,7 @@ const MyServices = () => {
                 />
               </div>
               <div>
-                <label className="block text-gray-700 text-sm font-semibold mb-1">
+                <label className="block text-gray-700 dark:text-white text-sm font-semibold mb-1">
                   Service Name
                 </label>
                 <input
@@ -135,7 +135,7 @@ const MyServices = () => {
                 />
               </div>
               <div>
-                <label className="block text-gray-700 text-sm font-semibold mb-1">
+                <label className="block text-gray-700 dark:text-white text-sm font-semibold mb-1">
                   Organization
                 </label>
                 <input
@@ -148,7 +148,7 @@ const MyServices = () => {
                 />
               </div>
               <div>
-                <label className="block text-gray-700 text-sm font-semibold mb-1">
+                <label className="block text-gray-700 dark:text-white text-sm font-semibold mb-1">
                   Official Website
                 </label>
                 <input
@@ -160,7 +160,7 @@ const MyServices = () => {
                 />
               </div>
               <div>
-                <label className="block text-gray-700 text-sm font-semibold mb-1">
+                <label className="block text-gray-700 dark:text-white text-sm font-semibold mb-1">
                   Detailed Info
                 </label>
                 <textarea
@@ -172,7 +172,7 @@ const MyServices = () => {
                 ></textarea>
               </div>
               <div>
-                <label className="block text-gray-700 text-sm font-semibold mb-1">
+                <label className="block text-gray-700 dark:text-white text-sm font-semibold mb-1">
                   Service Category
                 </label>
                 <input
@@ -185,7 +185,7 @@ const MyServices = () => {
                 />
               </div>
               <div>
-                <label className="block text-gray-700 text-sm font-semibold mb-1">
+                <label className="block text-gray-700 dark:text-white text-sm font-semibold mb-1">
                   Pricing
                 </label>
                 <input
@@ -198,7 +198,7 @@ const MyServices = () => {
                 />
               </div>
               <div>
-                <label className="block text-gray-700 text-sm font-semibold mb-1">
+                <label className="block text-gray-700 dark:text-white text-sm font-semibold mb-1">
                   Contact Email
                 </label>
                 <input

@@ -26,7 +26,7 @@ const Partners = () => {
         {partners.map((partner, index) => (
           <div key={index} className="bg-white p-6 rounded-xl shadow-md text-center hover:shadow-lg transition duration-300">
             <img src={partner.logo} alt={partner.name} className="mx-auto mb-4 w-20 h-20 object-contain" />
-            <h3 className="text-xl font-semibold">{partner.name}</h3>
+            <h3 className="text-xl font-semibold dark:text-black">{partner.name}</h3>
             <p className="text-gray-600 mt-2">{partner.description}</p>
           </div>
         ))}

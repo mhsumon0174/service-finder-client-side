@@ -132,7 +132,7 @@ const ReviewCard = ({ review, index, fetchReviews }) => {
             className="space-y-4"
           >
             <div>
-              <label className="text-sm font-medium text-gray-700">
+              <label className="text-sm font-medium text-gray-700 dark:text-white">
                 Service Title
               </label>
               <input
@@ -145,7 +145,7 @@ const ReviewCard = ({ review, index, fetchReviews }) => {
             </div>
 
             <div>
-              <label className="text-sm font-medium text-gray-700">
+              <label className="text-sm font-medium text-gray-700 dark:text-white">
                 Review
               </label>
               <input
@@ -158,7 +158,7 @@ const ReviewCard = ({ review, index, fetchReviews }) => {
             </div>
 
             <div>
-              <label className="text-sm font-medium text-gray-700">
+              <label className="text-sm font-medium text-gray-700 dark:text-white">
                 Rating
               </label>
               <input
@@ -173,7 +173,7 @@ const ReviewCard = ({ review, index, fetchReviews }) => {
             </div>
 
             <div>
-              <label className="text-sm font-medium text-gray-700">Email</label>
+              <label className="text-sm font-medium text-gray-700 dark:text-white">Email</label>
               <input
                 name="email"
                 type="email"
