@@ -15,7 +15,7 @@ const ContactForm = () => {
   };
 
   return (
-    <section className="max-w-3xl mx-auto my-16 bg-white dark:bg-gray-900 p-8 rounded-xl shadow-xl border border-gray-200 dark:border-gray-700">
+    <section className="max-w-3xl mx-auto my-25 bg-white dark:bg-gray-900 p-8 rounded-xl shadow-xl border border-gray-200 dark:border-gray-700">
       <h2 className="text-4xl font-extrabold text-center mb-8 text-gray-900 dark:text-white">
         Contact Us
       </h2>
@@ -67,7 +67,7 @@ const ContactForm = () => {
         </div>
         <button
           type="submit"
-          className="w-full bg-indigo-600 text-white font-bold py-3 rounded-md hover:bg-indigo-700 transition duration-300"
+          className="w-full bg-indigo-600 text-white cursor-pointer font-bold py-3 rounded-md hover:bg-indigo-700 transition duration-300"
         >
           Send Message
         </button>

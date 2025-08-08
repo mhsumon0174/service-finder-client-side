@@ -47,14 +47,14 @@ const Blogs = () => {
   ];
 
   return (
-    <section className="my-20 px-4 md:px-10">
+    <section className="my-25 px-4 md:px-10">
       <h2 className="text-center mb-20 font-bold text-3xl md:text-5xl"> Explore Our Blogs</h2>
       <div className="grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
         {blogs.map((blog) => (
           <div key={blog.id} className="bg-white rounded-xl shadow-md overflow-hidden transform transition duration-300 hover:scale-105 hover:shadow-xl">
             <img src={blog.image} alt={blog.title} className="w-full aspect-video rounded-2xl " />
             <div className="p-7">
-              <h3 className="text-2xl font-semibold mb-4 text-amber-700">{blog.title}</h3>
+              <h3 className="text-2xl font-semibold mb-4 text-black">{blog.title}</h3>
               <p className="text-gray-600 text-base leading-relaxed">{blog.description}</p>
             </div>
           </div>

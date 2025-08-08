@@ -36,9 +36,9 @@ const ServiceCard = ({ service }) => {
             </p>
           </div>
           <div className="flex items-center justify-between mt-auto">
-            <span className="text-lg font-semibold text-green-600">BDT {price}</span>
+            <span className="text-lg font-semibold text-black">BDT {price}</span>
             <Link to={`/services/${_id}`}>
-              <button onClick={()=>{handleDetails(),window.scrollTo(0,0)}} className="btn btn-error btn-sm text-white font-bold hover:scale-105 transition-transform">
+              <button onClick={()=>{handleDetails(),window.scrollTo(0,0)}} className="btn bg-[#d9534f] btn-sm text-white font-bold hover:scale-105 transition-transform">
                 See Details
               </button>
             </Link>
@@ -62,9 +62,9 @@ const ServiceCard = ({ service }) => {
           </p>
         </div>
         <div className="flex items-center justify-between mt-auto">
-          <span className="text-lg font-semibold text-green-600">${price}</span>
+          <span className="text-lg font-semibold text-black">${price}</span>
           <Link to={`/services/${_id}`}>
-            <button className="btn btn-success btn-sm text-white font-semibold hover:scale-105 transition-transform">
+            <button className="btn bg-[#d9534f] btn-sm text-white font-semibold hover:scale-105 transition-transform">
               See Details
             </button>
           </Link>

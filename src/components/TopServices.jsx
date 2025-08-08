@@ -51,7 +51,7 @@ const TopServices = () => {
     }
     
     return (
-        <div className='my-20'>
+        <div className='my-25'>
             <h1 className='text-center mb-20 font-bold text-3xl md:text-5xl'>Top Services</h1>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 px-4">
                 {
@@ -61,8 +61,8 @@ const TopServices = () => {
            <div className='flex justify-center my-10'>
              {
                 seeLess?
-                <button onClick={handleSeeAll} className='btn btn-error px-8 font-bold text-white'>See All</button>
-            :<button onClick={handleSeeLess} className='btn btn-error px-8 font-bold text-white'>See Less</button> 
+                <button onClick={handleSeeAll} className='btn bg-[#d9534f] px-8 font-bold text-white'>See All</button>
+            :<button onClick={handleSeeLess} className='btn bg-[#d9534f] px-8 font-bold text-white'>See Less</button> 
             }
            </div>
         </div>

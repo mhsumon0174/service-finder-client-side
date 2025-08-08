@@ -39,7 +39,7 @@ const HomeReviewsShow = () => {
               />
               <div>
                 <h3 className="text-lg font-bold text-gray-800">{review.name}</h3>
-                <p className="text-sm text-blue-600 font-medium flex gap-4"><FaStar/> {review.rate} / 5</p>
+                <p className="text-sm text-yellow-400 font-medium flex gap-4"><FaStar/> {review.rate} / 5</p>
               </div>
             </div>
             <p className="text-gray-600 text-[15px] leading-relaxed">"{review.review}"</p>

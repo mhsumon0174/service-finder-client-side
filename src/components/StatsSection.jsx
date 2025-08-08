@@ -18,7 +18,7 @@ const StatsSection = () => {
   }, []);
 
   return (
-   <div className="my-16 text-center ">
+   <div className="my-25 text-center ">
   <h2 className="text-center mb-2 font-bold text-3xl md:text-5xl">Platform Statistics</h2>
   <p className="text-gray-600 mb-10 dark:text-white">Here’s how we are growing every day</p>
 
