@@ -17,6 +17,7 @@ import Error from "./pages/Error.jsx";
 import Loading from "./components/Loading.jsx";
 import ServiceDetails from "./components/ServiceDetails.jsx";
 import PrivateRoute from "./provider/PrivateRoute.jsx";
+import AboutUs from "./pages/AboutUs.jsx";
 
 const router = createBrowserRouter([
   {
@@ -32,6 +33,10 @@ const router = createBrowserRouter([
         hydrateFallbackElement: <Loading></Loading>,
         loader: () => fetch("https://assignment-11-server-fawn-seven.vercel.app/services"),
         Component: Services,
+      },
+      {
+path:'/about-us',
+Component:AboutUs,
       },
       {
         path: "/services/:id",

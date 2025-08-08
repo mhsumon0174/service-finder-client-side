@@ -7,6 +7,9 @@ const Footer = () => {
   const links=<>
     <li><NavLink to='/'>Home</NavLink> </li>
           <li><NavLink to='/services'>Services</NavLink> </li>
+          <li>
+                  <NavLink to="/about-us">About Us</NavLink>{" "}
+                </li>
          {
           user?
            <>
@@ -17,8 +20,8 @@ const Footer = () => {
          }
     </>
   return (
-    <footer className="bg-base-200 text-base-content px-6 py-10">
-      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-10">
+    <footer className="bg-base-200 text-base-content px-6 py-10 ">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 w-11/12 mx-auto md:grid-cols-4 gap-10">
 
         
         <aside className="space-y-3 text-center md:text-left">
@@ -36,7 +39,7 @@ const Footer = () => {
         
         <nav className='flex flex-col items-center md:block'>
           <h6 className="footer-title">Navigation</h6>
-          <ul className="space-y-2">
+          <ul className="space-y-2 ">
            {links}
           </ul>
         </nav>

@@ -39,6 +39,9 @@ const Navbar = () => {
       <li>
         <NavLink to="/services">Services</NavLink>{" "}
       </li>
+      <li>
+        <NavLink to="/about-us">About Us</NavLink>{" "}
+      </li>
       {user ? (
         <div className="lg:flex">
           <li>
