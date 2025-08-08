@@ -1,4 +1,4 @@
-import React, { use, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
 import { useLoaderData } from "react-router";
 import ServiceCard from "../components/ServiceCard";
@@ -9,11 +9,13 @@ import axios from "axios";
 const Services = () => {
   const [search, setSearch] = useState("");
   const [category, setCategory] = useState("");
-  const [query, setQuery] = useState([]);
+  const [selectedSortOrder, setSelectedSortOrder] = useState(""); // immediate UI state
+  const [sortOrder, setSortOrder] = useState(""); // applied on submit
+  const [query, setQuery] = useState({});
   const data = useLoaderData();
   const [services, setServices] = useState(data);
 
-  const { loading } = use(AuthContext);
+  const { loading } = useContext(AuthContext);
 
   const fetchServices = () => {
     axios
@@ -32,17 +34,30 @@ const Services = () => {
 
   const handleForm = (e) => {
     e.preventDefault();
+
     const queryData = {
       search: search,
       category: category,
+      sort: selectedSortOrder, // pass selected sort to query
     };
+
     setQuery(queryData);
+    setSortOrder(selectedSortOrder); // apply sort order only on submit
   };
+
   useEffect(() => {
     fetchServices();
   }, [query]);
+
+  // sort services only after submit using sortOrder state
+  const sortedServices = [...services].sort((a, b) => {
+    if (sortOrder === "asc") return a.price - b.price;
+    if (sortOrder === "desc") return b.price - a.price;
+    return 0;
+  });
+
   if (loading) {
-    return <Loading></Loading>;
+    return <Loading />;
   }
   return (
     <div className="my-20">
@@ -54,7 +69,7 @@ const Services = () => {
           All Services
         </h1>
         <form onSubmit={handleForm}>
-          <div className=" flex flex-col md:flex-row justify-around items-center gap-4 mb-6">
+          <div className="flex flex-col md:flex-row justify-around items-center gap-4 mb-6">
             <input
               type="text"
               placeholder="Search services..."
@@ -75,14 +90,24 @@ const Services = () => {
               <option value="Health">Health</option>
             </select>
 
+            <select
+              className="select select-bordered w-full md:w-1/4"
+              value={selectedSortOrder}
+              onChange={(e) => setSelectedSortOrder(e.target.value)}
+            >
+              <option value="">Sort By</option>
+              <option value="asc">Price: Low to High</option>
+              <option value="desc">Price: High to Low</option>
+            </select>
+
             <button className="btn btn-primary w-full md:w-auto">Search</button>
           </div>
         </form>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 px-4">
-          {services.length > 0 &&
-            services?.map((service, index) => (
-              <ServiceCard service={service} key={index}></ServiceCard>
+          {sortedServices.length > 0 &&
+            sortedServices.map((service, index) => (
+              <ServiceCard service={service} key={index} />
             ))}
         </div>
       </div>
