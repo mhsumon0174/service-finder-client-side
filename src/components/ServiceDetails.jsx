@@ -39,7 +39,7 @@ const ServiceDetails = () => {
             <p><span className="font-semibold">Email:</span> {email}</p>
             <p><span className="font-semibold">Price:</span> BDT {price}</p>
             <p><span className="font-semibold">Added:</span> {addDate}</p>
-          <Link to='/services'><button className="btn btn-accent text-white">Back To All Services</button></Link>
+          <Link to='/services'><button className="btn bg-[#d9534f] text-white">Back To All Services</button></Link>
           </div>
         </div>
       </div>

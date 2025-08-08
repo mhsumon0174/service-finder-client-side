@@ -62,7 +62,7 @@ const ServiceCard = ({ service }) => {
           </p>
         </div>
         <div className="flex items-center justify-between mt-auto">
-          <span className="text-lg font-semibold text-black">${price}</span>
+          <span className="text-lg font-semibold text-black">BDT {price}</span>
           <Link to={`/services/${_id}`}>
             <button className="btn bg-[#d9534f] btn-sm text-white font-semibold hover:scale-105 transition-transform">
               See Details
