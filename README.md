@@ -1,9 +1,11 @@
  ## ServFinder - Service Review System
 
-A full-stack service review web application where users can add services, write reviews, explore services by others, and manage their interactions. Built as part of Assignment-11 (Category-12).
+A full-stack service review web application where users can add services, write reviews, explore services by others, and manage their interactions. 
 
 ##  Live Site
 https://assignment-11-80e0c.web.app
+
+![ServFinder Screenshot](https://i.ibb.co.com/d0csv9YF/service-finder.png)
 
 ##  Project Purpose
 
