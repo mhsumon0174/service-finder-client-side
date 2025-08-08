@@ -22,18 +22,18 @@ const StatsSection = () => {
   <h2 className="text-center mb-2 font-bold text-3xl md:text-5xl">Platform Statistics</h2>
   <p className="text-gray-600 mb-10 dark:text-white">Here’s how we are growing every day</p>
 
-  <div className="stats-container flex flex-col md:flex-row justify-around bg-gray-100 dark:bg-black p-10 rounded-lg gap-6">
+  <div className="stats-container flex flex-col md:flex-row justify-around bg-gray-50 dark:bg-black p-10 rounded-lg gap-6">
     <div className="text-center">
       <h3 className="text-xl font-semibold mb-2">Users</h3>
-      <CountUp start={0} end={stats.totalUsers} duration={5} suffix="+" className="text-4xl font-bold text-blue-600" />
+      <CountUp start={0} end={stats.totalUsers} duration={5} suffix="+" className="text-4xl font-bold " />
     </div>
     <div className="text-center">
       <h3 className="text-xl font-semibold mb-2">Services</h3>
-      <CountUp start={0} end={stats.totalServices} duration={5} suffix="+" className="text-4xl font-bold text-green-600" />
+      <CountUp start={0} end={stats.totalServices} duration={5} suffix="+" className="text-4xl font-bold " />
     </div>
     <div className="text-center">
       <h3 className="text-xl font-semibold mb-2">Reviews</h3>
-      <CountUp start={0} end={stats.totalReviews} duration={8} suffix="+" className="text-4xl font-bold text-purple-600" />
+      <CountUp start={0} end={stats.totalReviews} duration={8} suffix="+" className="text-4xl font-bold " />
     </div>
   </div>
 </div>
