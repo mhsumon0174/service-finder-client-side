@@ -39,42 +39,42 @@ const Home = () => {
         <title>Home || ServFinder</title>
       </Helmet>
 
-      
-      <div className='my-10'>
-  <Carousel
-  autoPlay
-  infiniteLoop
-  interval={7000}
-  transitionTime={1000}
-  stopOnHover={true}
-  showThumbs={true}
-  showStatus={false}
-  showIndicators={true}
-  thumbWidth={100}
-  className='custom-carousel w-11/12 mx-auto rounded-lg overflow-hidden'
->
-  {slides.map((slide, index) => (
-    <div key={index} className="relative">
-      <img
-        src={slide.image}
-        alt={`slide-${index}`}
-        className="w-full h-[400px] md:h-[600px] object-cover"
-      />
-      <div className="absolute inset-0 bg-black/40 flex items-center justify-center px-4 md:px-0">
-        <h2 className="text-white text-3xl md:text-5xl font-extrabold text-center drop-shadow-lg max-w-4xl leading-snug">
-          {slide.text}
-        </h2>
+
+      <div className='my-25'>
+        <Carousel
+          autoPlay
+          infiniteLoop
+          interval={7000}
+          transitionTime={1000}
+          stopOnHover={true}
+          showThumbs={true}
+          showStatus={false}
+          showIndicators={true}
+          thumbWidth={100}
+          className='custom-carousel w-11/12 mx-auto rounded-lg overflow-hidden'
+        >
+          {slides.map((slide, index) => (
+            <div key={index} className="relative">
+              <img
+                src={slide.image}
+                alt={`slide-${index}`}
+                className="w-full h-[400px] md:h-[600px] object-cover filter  brightness-35"
+              />
+              <div className="absolute inset-0 flex items-center justify-center px-4 md:px-0">
+                <h2 className="text-white text-3xl md:text-5xl font-extrabold text-center drop-shadow-lg max-w-4xl leading-snug">
+                  {slide.text}
+                </h2>
+              </div>
+            </div>
+          ))}
+        </Carousel>
+
       </div>
-    </div>
-  ))}
-</Carousel>
-
-</div>
 
 
 
-      
-      
+
+
       <TopServices />
       <Partners />
       <Blogs />
