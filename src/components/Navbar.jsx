@@ -48,11 +48,9 @@ const Navbar = () => {
             <NavLink to="/addservices">Add Service</NavLink>{" "}
           </li>
           <li>
-            <NavLink to="/myservices">My Services</NavLink>{" "}
+            <NavLink to="/myservices">Dashboard</NavLink>{" "}
           </li>
-          <li>
-            <NavLink to="/myreviews">My Reviews</NavLink>{" "}
-          </li>
+         
         </div>
       ) : (
         ""
