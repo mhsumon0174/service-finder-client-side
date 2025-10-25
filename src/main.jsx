@@ -9,7 +9,7 @@ import Home from "./components/Home.jsx";
 import Services from "./pages/Services.jsx";
 import MyServices from "./pages/MyServices.jsx";
 import AddService from "./pages/AddService.jsx";
-import MyReviews from "./pages/MyReviews.jsx";
+
 import Login from "./pages/Login.jsx";
 import Register from "./pages/Register.jsx";
 import AuthProvider from "./provider/AuthProvider.jsx";
@@ -55,11 +55,7 @@ Component:AboutUs,
         element:<PrivateRoute><MyServices></MyServices></PrivateRoute>
        
       },
-      {
-        path: "/myreviews",
-        element:<PrivateRoute><MyReviews></MyReviews></PrivateRoute>
-       
-      },
+     
       {
         path: "/login",
         Component: Login,
